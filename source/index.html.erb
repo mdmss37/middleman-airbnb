@@ -13,63 +13,32 @@ title: Le Wagon - Middleman
 <div class="container" id="home-flat-list">
   <h2 class="text-center home-flat-header">Recent Flats</h2>
   <div class="row">
-    <div class="col-xs-12 col-sm-4">
-      <!-- insert <div class="card"> -->
-		<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-		  <div class="card-category">Popular</div>
-		  <div class="card-description">
-		    <h2>Le Wagon Shanghai</h2>
-		    <p>Very cool city, the best</p>
-        <ul class="list-inline">
-          <li><i class="fa fa-star yellow"></i></li>
-          <li><i class="fa fa-star yellow"></i></li>
-          <li><i class="fa fa-star yellow"></i></li>
-          <li><i class="fa fa-star yellow"></i></li>
-          <li><i class="fa fa-star yellow"></i></li>
-        </ul>
-		  </div>
-		  <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
-		  <a class="card-link" href="#" ></a>
-		</div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-      <!-- insert <div class="card"> -->
-		<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-		  <div class="card-category">Popular</div>
-		  <div class="card-description">
-		    <h2>Le Wagon Shanghai</h2>
-		    <p>Very cool city, the best</p>
-        <ul class="list-inline">
-          <li><i class="fa fa-star yellow"></i></li>
-          <li><i class="fa fa-star yellow"></i></li>
-          <li><i class="fa fa-star yellow"></i></li>
-          <li><i class="fa fa-star"></i></li>
-          <li><i class="fa fa-star"></i></li>
-        </ul>
-		  </div>
-		  <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
-		  <a class="card-link" href="#" ></a>
-		</div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-      <!-- insert <div class="card"> -->
-		<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-		  <div class="card-category">Popular</div>
-		  <div class="card-description">
-		    <h2>Le Wagon Shanghai</h2>
-		    <p>Very cool city, the best</p>
-        <ul class="list-inline">
-          <li><i class="fa fa-star"></i></li>
-          <li><i class="fa fa-star"></i></li>
-          <li><i class="fa fa-star"></i></li>
-          <li><i class="fa fa-star"></i></li>
-          <li><i class="fa fa-star"></i></li>
-        </ul>
-		  </div>
-		  <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
-		  <a class="card-link" href="#" ></a>
-		</div>
-    </div>
+    <% data.flats.each do |owner, flat| %>
+      <div class="col-xs-12 col-sm-4">
+        <!-- insert <div class="card"> -->
+    		<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/<%= flat.city_slug %>');"> 
+    		  <div class="card-category">Popular</div>
+    		  <div class="card-description">
+    		    <h2>Le Wagon <%= flat.name %></h2>
+    		    <p><%= flat.description %></p>
+            <ul class="list-inline">
+
+              <% flat.rating.to_i.times do %>
+                <li><i class="fa fa-star yellow"></i></li>
+              <% end %>
+              <% (5 - flat.rating.to_i).times do %>
+                <li><i class="fa fa-star"></i></li>
+              <% end %>
+              
+            </ul>
+    		  </div>
+    		  <!-- <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay"> -->
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{owner}", class: "card-user" %>
+          <%= link_to "", "flats/#{owner}.html", class: "card-link" %>
+    		  <!-- <a class="card-link" href="#" ></a> -->
+    		</div>
+      </div>
+    <% end %>
   </div>
 </div>
 
